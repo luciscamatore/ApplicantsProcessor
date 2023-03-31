@@ -1,0 +1,37 @@
+public static void citire() throws FileNotFoundException{
+
+        Aplicant aplicant = new Aplicant(); //creeam obiect nou
+        ArrayList<Aplicant> apl = new ArrayList<>();
+        Scanner scn = new Scanner(new File("src/date.csv")); //citim din fisier
+
+        while (scn.hasNextLine()) {
+            String[] str = scn.nextLine().split(","); //intr-un string array punem linia despartita la virgula
+            if (!patternMatches(str[1])) //daca email-ul nu este conform cerintelor citim urmatoarea linie
+            {
+                str = scn.nextLine().split(","); //citim urmatoarea linie
+            }
+            aplicant.name = str[0]; //aplicam fiecarui camp din aplicant valoarea sa
+            aplicant.email = str[1];
+            aplicant.dateTime = LocalDateTime.parse(str[2]); //convertim din string in LocalDateTime
+            aplicant.score = Double.parseDouble(str[3]); //convertim din string in Double
+
+            apl.add(aplicant);
+        }
+        for(int i=0;i<apl.size();i++)
+            System.out.println(apl.get(i));
+        //return apl; //returnam obiectul citit
+    }
+
+
+    Speranta Cruce,speranta_cruce@gmail.com,2023-01-24T20:14:53,2.33
+    Ionica Sergiu Ramos,chiarel@ionicaromass.ro,2023-01-24T16:32:19,9.00
+    Carla Stefanescu,carlita_ste@yahoo.com,2023-01-23T23:59:01,5.20
+    Lucretiu Hambare,hambare_lucretiu@outlook.com,2023-01-24T22:30:15,10
+    Robin Hoffman-Rus,robman@dasmail.de,2023-01-23T12:00:46,8.99
+
+    public static boolean patternMatches(String emailAddress) {
+            final String regexPattern = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$"; //patternul pentru email
+            return Pattern.compile(regexPattern)
+                    .matcher(emailAddress)
+                    .matches();//comparam patternul cu email-ul primit ca argument
+        }

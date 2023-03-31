@@ -110,7 +110,7 @@ public class ApplicantsProcessor {
         //in caz ca nu avem cel putin 3 aplicanti trebuie sa luam toata dimensiunea listei
         int lenght = Math.min(aplicants.size(), 3); //minimul dintre cele doua
 
-        String[] topAplicants = new String[lenght]; //creeam un array string pentru a stoca aplicantii
+        String[] topAplicants = new String[lenght]; //cream un array string pentru a stoca aplicantii
 
         aplicants.sort(Comparator.comparing(Aplicant::getScore)); //sortam lista dupa scor
         Collections.reverse(aplicants); //o pune in ordine inversa
@@ -182,7 +182,7 @@ public class ApplicantsProcessor {
      */
     public static String  processApplicants(InputStream csvStream) throws IOException {
 
-        ArrayList<Aplicant> aplicant = new ArrayList<>(); //creeam o noua lista pentru a putea adauga fiecare aplicant
+        ArrayList<Aplicant> aplicant = new ArrayList<>(); //cream o noua lista pentru a putea adauga fiecare aplicant
         BufferedReader reader = new BufferedReader(new InputStreamReader(csvStream)); //obiect pentru a putea citi din fisier
 
         while(reader.ready()) { //cat timp putem citi
@@ -219,10 +219,10 @@ public class ApplicantsProcessor {
 
     public static void main(String[] args) throws IOException {
 
-        InputStream csvStream = new FileInputStream("src/date.csv"); //creeam un obiect de tip InputStream pentru a citi din fisier
+        InputStream csvStream = new FileInputStream("src/date.csv"); //cream un obiect de tip InputStream pentru a citi din fisier
         String jsonString = processApplicants(csvStream); //punem rezultatul in string
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create(); //creeam un obiect gson pentru a printa in format JSON
+        Gson gson = new GsonBuilder().setPrettyPrinting().create(); //cream un obiect gson pentru a printa in format JSON
         JsonElement je = JsonParser.parseString(jsonString);
         String prettyJsonString = gson.toJson(je);
         System.out.println(prettyJsonString); //afisam reuzltatul
